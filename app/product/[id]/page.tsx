@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { ProductGallery } from '@/components/ProductGallery';
 import { getProductById } from '@/lib/api/products';
 import { Star, ArrowLeft, Package, Truck } from 'lucide-react';

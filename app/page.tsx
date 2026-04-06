@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { Suspense } from 'react';
 import { SearchBar } from '@/components/search-bar';
 import { ProductGrid } from '@/components/product-grid';
