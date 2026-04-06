@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { SearchBar } from '@/components/search-bar';
 import { ProductGrid } from '@/components/product-grid';
+import { FilterSidebar } from '@/components/filter-sidebar';
 import { ProductsSkeleton } from '@/components/products-skeleton';
 
 interface SearchParams {
@@ -33,6 +34,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<Sea
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-6 lg:flex-row">
+          {/* Sidebar */}
+          <aside className="w-full lg:w-64 shrink-0">
+            <FilterSidebar currentCategory={params.category} currentSort={params.sort} />
+          </aside>
+
           {/* Products Grid */}
           <div className="flex-1">
             <Suspense fallback={<ProductsSkeleton />}>
