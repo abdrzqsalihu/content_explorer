@@ -16,13 +16,13 @@ export function buildProductsQuery(params: {
   } = params;
 
   let endpoint = '/products';
+  
+  if (search) {
+    endpoint = '/products/search';
+  }
 
   if (category && category !== 'all') {
     endpoint = `/products/category/${category}`;
-  }
-
-  if (search) {
-    endpoint = '/products/search';
   }
 
   const query = new URLSearchParams({

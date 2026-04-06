@@ -9,7 +9,9 @@ export async function getProducts(params = {}): Promise<ProductsResponse> {
     const { endpoint, query } = buildProductsQuery(params);
 
     const res = await fetch(`${BASE_URL}${endpoint}?${query}`, {
-      cache: 'no-store',
+      next: {
+        revalidate: 60, 
+      },
     });
 
     if (!res.ok) throw new Error('Failed to fetch products');
@@ -21,9 +23,12 @@ export async function getProducts(params = {}): Promise<ProductsResponse> {
   }
 }
 
+
 export async function getProductById(id: number): Promise<Product> {
   const res = await fetch(`${BASE_URL}/products/${id}`, {
-    cache: 'force-cache',
+    next: {
+      revalidate: 3600, 
+    },
   });
 
   if (!res.ok) throw new Error('Failed to fetch product');
