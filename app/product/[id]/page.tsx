@@ -1,7 +1,9 @@
+import { ProductGallery } from '@/components/ProductGallery';
 import { getProductById } from '@/lib/api/products';
 import { Star, ArrowLeft, Package, Truck } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
 
 export async function generateMetadata({
   params,
@@ -46,32 +48,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
 
             {/* Image Gallery */}
-            <div className="flex flex-col gap-4">
-              <div className="group relative w-full overflow-hidden rounded-2xl border border-border bg-secondary/20 aspect-square">
-                <img
-                  src={product.images?.[0] || product.thumbnail}
-                  alt={product.title}
-                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                />
-              </div>
-
-              {product.images && product.images.length > 1 && (
-                <div className="grid grid-cols-4 gap-4">
-                  {product.images.slice(0, 4).map((image, index) => (
-                    <div
-                      key={index}
-                      className="relative aspect-square cursor-pointer overflow-hidden rounded-xl border border-border bg-secondary/20 opacity-60 transition-all duration-300 hover:border-foreground/40 hover:opacity-100"
-                    >
-                      <img
-                        src={image}
-                        alt={`${product.title} gallery thumbnail ${index + 1}`}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <ProductGallery product={product} />
 
             {/* Product Info */}
             <div className="flex flex-col space-y-10">
